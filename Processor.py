@@ -3,28 +3,24 @@
 import logging
 from tornado.ioloop import IOLoop
 from stormed import Connection, Message
+import simplejson as json
 
 def on_connect():
-	global ch
-	ch = conn.channel()
-	ch.queue_declare(queue='hello')
-	ch.consume('hello', callback, no_ack=True)
+    ch = conn.channel()
+    ch.queue_declare(queue='reply')
+    ch.consume('reply', callback, no_ack=True)
 
 def callback(msg):
 	print " [x] Received %r" % msg.body
-	#msg.
-	runMsg(msg.body)
-	#msgR = Message("I am Zebra")
-	#sendMsg(msgR)
-	#runMsg("print 3")
+	runmsg(msg)
 	
-def runMsg(msgExec):
-	print "Exec",msgExec
-	exec msgExec
-
-def sendMsg(msg):
-	ch.publish(msg, exchange='', routing_key='hello')
-
+def runmsg(msg):
+	print "Exec", msg.body
+	strMsg = json.loads(msg.body)
+	print "Head:",strMsg[0]
+	print "Body:",strMsg[1]
+	#exec msg
+	
 logging.basicConfig()
 conn = Connection(host='localhost')
 conn.connect(on_connect)

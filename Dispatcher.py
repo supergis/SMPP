@@ -4,19 +4,16 @@ import logging
 from tornado.ioloop import IOLoop
 from stormed import Connection, Message
 
+msg = Message('Hello World!')
+
 def on_connect():
 	ch = conn.channel()
-	ch.queue_declare(queue='hello')
-	
-	msg1 = Message('print """Hello world,Zebra A"""')
-	msg2 = Message('print """Hello world,Zebra B"""')
-
-	SendHello(ch,msg1)
-	SendHello(ch,msg2)
-	#SendNo(ch)	
+	ch.queue_declare(queue='hello')	
+	SendHello(ch)
+	SendNo(ch)	
 	conn.close(callback=done)
 
-def SendHello(ch,msg):
+def SendHello(ch):
 	ch.publish(msg, exchange='', routing_key='hello')
 	print "Send Hello Finish"
 	
