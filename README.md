@@ -1,9 +1,9 @@
 SMPP  V0.1
-=========================================
+=================================================
 SuperMap Parallel Processor
------------------------------------------
-A parallel toolset for process geodataset. 
-=========================================
+-------------------------------------------------
+A parallel toolset for process masive geodataset. 
+=================================================
 
 smu:	supermap ugc lib for python.
 
