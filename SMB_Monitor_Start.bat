@@ -1,1 +1,0 @@
-start python SMB_Monitor.py wait
