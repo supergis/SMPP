@@ -1,4 +1,14 @@
+# coding: GB2312
 #! /usr/bin/env python
+
+"""
+SMPP,SuperMap Parallel Processor
+Desc:
+	The Monitor of Status, reveived from SMB.
+	
+Author: WangEQ, SuperMap GIS Institute.
+All rights reserved.
+"""
 
 from datetime import datetime, date, time
 
